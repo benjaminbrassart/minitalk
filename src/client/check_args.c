@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 03:25:39 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 04:35:19 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/09/29 07:18:39 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ static int	check_int_overflow(int int_val, char const *str_val)
 		free(s);
 	}
 	else
+	{
 		ft_dprintf(2, "ft_itoa() failed!\n");
+		exit(1);
+	}
 	return (inbound);
 }
 
