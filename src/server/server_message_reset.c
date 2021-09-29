@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   server_message_reset.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 02:51:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 09:23:22 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/09/29 06:21:23 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/09/29 09:27:45 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
 #include "minitalk.h"
-#include "minitalk_client.h"
+#include <stdlib.h>
 
-int	main(int argc, char *argv[])
+void	server_message_reset(void)
 {
 	t_mt *const	mt = _mt();
-	int			pid;
 
-	check_args(argc, argv);
-	pid = ft_atoi(argv[1]);
-	mt->message = argv[2];
-	while (*mt->message)
-	{
-		send_byte(pid, *mt->message);
-		++(mt->message);
-	}
-	send_byte(pid, 0);
-	return (0);
+	free(mt->message);
+	mt->message = 0;
 }

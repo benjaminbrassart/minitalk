@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   on_success.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 02:51:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 09:23:22 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/09/29 07:24:16 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/09/29 09:31:58 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
+#include "ft_stdio.h"
 #include "minitalk.h"
-#include "minitalk_client.h"
+#include <stdlib.h>
 
-int	main(int argc, char *argv[])
+void	on_success(int sig)
 {
-	t_mt *const	mt = _mt();
-	int			pid;
+	static int	i = 0;
 
-	check_args(argc, argv);
-	pid = ft_atoi(argv[1]);
-	mt->message = argv[2];
-	while (*mt->message)
+	(void)sig;
+	if (++i >= 8)
 	{
-		send_byte(pid, *mt->message);
-		++(mt->message);
+		if(*_mt()->message == 0)
+		{
+			ft_printf("Received confirmation from server.\n");
+			exit(0);
+		}
+		i = 0;
 	}
-	send_byte(pid, 0);
-	return (0);
 }

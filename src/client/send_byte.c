@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   send_byte.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 02:51:05 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 09:23:22 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/09/29 02:58:32 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/09/29 09:34:08 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "minitalk.h"
+#include "ft_stdio.h"
 #include "minitalk_client.h"
+#include <signal.h>
+#include <unistd.h>
 
-int	main(int argc, char *argv[])
+int	send_byte(int pid, unsigned char byte)
 {
-	t_mt *const	mt = _mt();
-	int			pid;
+	int	i;
+	int	sig;
 
-	check_args(argc, argv);
-	pid = ft_atoi(argv[1]);
-	mt->message = argv[2];
-	while (*mt->message)
+	i = 0;
+	while (i < 8)
 	{
-		send_byte(pid, *mt->message);
-		++(mt->message);
+		if (byte & (1 << (7 - i)))
+			sig = SIGUSR2;
+		else
+			sig = SIGUSR1;
+		if (!send_wait(pid, sig))
+			break ;
+		++i;
+		usleep(42);
 	}
-	send_byte(pid, 0);
-	return (0);
+	return (i);
 }
