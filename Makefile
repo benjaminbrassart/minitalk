@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 01:04:09 by bbrassar          #+#    #+#              #
-#    Updated: 2021/09/29 02:55:32 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/09/29 04:17:28 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ NAME_LIBFT				= $(DIR_LIBFT)/libft.a
 
 NAME_CLIENT				= client
 
-SRC_CLIENT				= main.c
+SRC_CLIENT				= main.c check_args.c
 
 OBJ_CLIENT				= $(addprefix $(DIR_OBJ)/$(NAME_CLIENT)/, $(SRC_CLIENT:.c=.o))
 
