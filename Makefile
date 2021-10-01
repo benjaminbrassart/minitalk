@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 01:04:09 by bbrassar          #+#    #+#              #
-#    Updated: 2021/09/29 09:00:03 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/10/01 09:03:39 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 CFLAGS					= -Wall -Werror -Wextra -c -MMD -I$(DIR_LIBFT)/include \
 							-I$(DIR_INCLUDE) -g
 
-LDFLAGS					= -lft -L$(DIR_LIBFT) -static -g
+LDFLAGS					= -lft -L$(DIR_LIBFT) -g
 
 DIR_SRC					= src
 
