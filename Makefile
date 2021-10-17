@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 01:04:09 by bbrassar          #+#    #+#              #
-#    Updated: 2021/10/01 09:03:39 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/10/17 09:40:36 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,8 +60,6 @@ SRC_SERVER				= main.c server_exit.c server_message_append.c \
 							server_message_reset.c
 
 OBJ_SERVER				= $(addprefix $(DIR_OBJ)/$(NAME_SERVER)/, $(SRC_SERVER:.c=.o))
-
-
 
 all:					$(NAME_CLIENT) $(NAME_SERVER)
 
