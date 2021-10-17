@@ -1,7 +1,5 @@
-.vscode/
 obj/
 client
 server
-*.nat
 !src/client/
 !src/server/
