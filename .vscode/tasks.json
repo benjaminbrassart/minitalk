@@ -24,7 +24,7 @@
 			"label": "norminette",
 			"type": "shell",
 			"command": "sh",
-			"args": ["-c", "! norminette | grep -v 'OK!$'"],
+			"args": ["-c", "! norminette src include | grep -v 'OK!$'"],
 			"group": {
 				"kind": "test",
 				"isDefault": true
