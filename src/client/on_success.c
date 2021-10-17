@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 07:24:16 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/30 06:19:14 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/17 08:56:32 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 #include "minitalk.h"
 #include <stdlib.h>
 
-void	on_success(int sig)
+void	on_success(int sig __attribute__((unused)))
 {
 	static int	i = 0;
 
-	(void)sig;
+	ft_putchar('.');
 	if (++i >= 8)
 	{
 		if (*_mt()->message == 0)
 		{
-			ft_printf("Received confirmation from server.\n");
+			ft_putendl(" OK");
 			exit(0);
 		}
 		i = 0;
