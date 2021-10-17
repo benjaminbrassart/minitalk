@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 02:55:11 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 09:34:20 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/17 08:34:01 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	on_signal(int sig, siginfo_t *si, void *_uctx)
 		c = 0;
 		i = 0;
 	}
-	usleep(42);
+	usleep(SLEEP_TIME);
 	kill(si->si_pid, SIGUSR1);
 }
 

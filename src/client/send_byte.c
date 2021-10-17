@@ -6,11 +6,12 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 02:58:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 09:34:08 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/17 08:33:58 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stdio.h"
+#include "minitalk.h"
 #include "minitalk_client.h"
 #include <signal.h>
 #include <unistd.h>
@@ -30,7 +31,7 @@ int	send_byte(int pid, unsigned char byte)
 		if (!send_wait(pid, sig))
 			break ;
 		++i;
-		usleep(42);
+		usleep(SLEEP_TIME);
 	}
 	return (i);
 }
