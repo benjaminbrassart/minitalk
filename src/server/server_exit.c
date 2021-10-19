@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 05:52:25 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 08:31:26 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/19 03:52:25 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 void	server_exit(int status)
 {
-	free(_mt()->message);
+	free(*_msg());
 	exit(status);
 }

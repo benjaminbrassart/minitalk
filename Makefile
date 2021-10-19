@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 01:04:09 by bbrassar          #+#    #+#              #
-#    Updated: 2021/10/17 09:40:36 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/10/19 03:52:25 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LDFLAGS					= -lft -L$(DIR_LIBFT) -g
 
 DIR_SRC					= src
 
-SRC_COMMON				= _mt.c
+SRC_COMMON				= _msg.c
 
 DIR_OBJ					= obj
 

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 02:55:11 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/17 08:34:01 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/19 03:52:25 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	on_signal(int sig, siginfo_t *si, void *_uctx)
 	{
 		if (c == 0)
 		{
-			ft_printf("%s\n", _mt()->message);
+			ft_printf("%s\n", *_msg());
 			server_message_reset();
 		}
 		else

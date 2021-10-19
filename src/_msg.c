@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _mt.c                                              :+:      :+:    :+:   */
+/*   _msg.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 08:29:24 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 08:30:14 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/19 03:52:25 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stdlib.h"
 #include "minitalk.h"
 
-t_mt	*_mt(void)
+char	**_msg(void)
 {
-	static t_mt	mt = {FT_NULL};
+	static char	*msg = FT_NULL;
 
-	return (&mt);
+	return (&msg);
 }

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 07:23:50 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/17 08:54:42 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/10/19 03:39:45 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 void	on_error(int sig __attribute__((unused)))
 {
-	ft_putchar_fd('!', 2);
+	ft_putendl_fd("! Error", 2);
 	exit(1);
 }
