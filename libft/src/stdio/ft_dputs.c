@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_dputs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/30 15:04:27 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 19:29:56 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/09 18:14:02 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/09 18:50:08 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_stdio.h"
+#include "ft_string.h"
+#include <unistd.h>
 
-void	ft_putchar(char c)
+int	ft_dputs(int fd, char const *s)
 {
-	ft_putc(c);
+	return (write(fd, s, ft_strlen(s)));
 }

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 07:54:48 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 03:51:45 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/09 20:26:26 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	ft_putint(int i, int b)
 		n = i;
 	if (--b > 0)
 		ft_putint(n / 10, b);
-	ft_putchar(BASE_HEX[n % 10]);
+	ft_putc(BASE_HEX[n % 10]);
 }
 
 int	putsign(t_opt *opt, int n)

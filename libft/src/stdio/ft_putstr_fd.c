@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 10:43:47 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/05/30 15:06:18 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/09 19:31:14 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,5 @@
 
 void	ft_putstr_fd(char const *s, int fd)
 {
-	if (s)
-		write(fd, s, ft_strlen(s));
+	ft_dputs(fd, s);
 }

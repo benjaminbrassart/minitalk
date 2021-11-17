@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_get_printers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/30 15:04:27 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 19:29:56 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/09 14:34:39 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/09 14:36:36 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf_functions.h"
 
-void	ft_putchar(char c)
+t_printer	*ft_get_printers(void)
 {
-	ft_putc(c);
+	static t_printer	printers[] = {
+	{'c', ft_print_char},
+	{'s', ft_print_string},
+	{'p', ft_print_pointer},
+	{'d', ft_print_int},
+	{'i', ft_print_int},
+	{'u', ft_print_uint},
+	{'x', ft_print_hex_low},
+	{'X', ft_print_hex_up},
+	{'\0', NULL}
+	};
+
+	return (printers);
 }

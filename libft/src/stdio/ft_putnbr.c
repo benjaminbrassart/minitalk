@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 15:05:22 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/05/30 15:05:42 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/09 19:30:52 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_putnbr(int n)
 {
-	ft_putnbr_fd(n, 1);
+	ft_puti(n);
 }

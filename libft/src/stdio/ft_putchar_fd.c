@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 10:42:04 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/05/22 10:43:23 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/09 19:30:04 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	ft_dputc(fd, c);
 }

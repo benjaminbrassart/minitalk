@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_isblank.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/30 15:04:27 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 19:29:56 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/09 17:45:59 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/09 17:46:16 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ctype.h"
 
-void	ft_putchar(char c)
+int	ft_isblank(int c)
 {
-	ft_putc(c);
+	return (c == ' ' || c == '\t');
 }

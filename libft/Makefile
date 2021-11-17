@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 02:36:44 by bbrassar          #+#    #+#              #
-#    Updated: 2021/10/17 07:42:33 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/11/17 22:51:11 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,13 @@ NAME_SO				= libft.so
 CFLAGS				= -Wall -Werror -Wextra -c -MMD -I$(DIR_INCLUDE) \
 						-I$(DIR_INCLUDE)/private
 
-LDFLAGS				= -fPIC -shared
+LDFLAGS				= 
+
+ifeq ($(DEBUG), true)
+CFLAGS				+= -g
+
+LDFLAGS				+= -g
+endif
 
 DIR_SRC				= src
 
@@ -25,17 +31,17 @@ SRC					=	$(addsuffix .c, \
 							$(addprefix ctype/ft_, \
 								isalnum isalpha isascii iscntrl isdigit \
 								isgraph islower isprint ispunct isspace \
-								isupper isxdigit tolower toupper \
+								isupper isxdigit tolower toupper isblank \
 							) \
 							$(addprefix stdio/ft_, \
-								putchar_fd putchar putendl_fd putendl \
-								putnbr_fd putnbr putstr_fd putstr \
+								dputc putc dputi puti dputs puts dputui putui \
+								dputnl putnl putub dputub \
 							) \
 							$(addprefix stdio/printf/ft_, \
 								patoi get_printer parse_options print_char \
 								print_hex print_int print_pointer print_raw \
 								print_string print_uint printf dprintf vprintf \
-								vdprintf putstr_fn \
+								vdprintf putstr_fn get_printers \
 							) \
 							$(addprefix list/ft_, \
 								lstadd_back lstadd_front lstclear lstdelone \
@@ -75,10 +81,10 @@ $(NAME):			$(OBJ)
 
 $(DIR_OBJ)/%.o:		$(DIR_SRC)/%.c
 					@mkdir -p $(@D)
-					$(CC) $(CFLAGS) $< -o $@
+					$(CC) $(CFLAGS) -fPIC $< -o $@
 
 $(NAME_SO):			$(OBJ)
-					$(CC) $^ -o $@ $(LDFLAGS)
+					$(CC) $^ -o $@ -shared -fPIC
 
 all:				$(NAME) $(NAME_SO)
 

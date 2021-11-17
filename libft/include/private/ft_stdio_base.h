@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_stdio_base.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/30 15:04:27 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 19:29:56 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/09 19:01:48 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/09 19:12:49 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_STDIO_BASE_H
+# define FT_STDIO_BASE_H
 
-void	ft_putchar(char c)
-{
-	ft_putc(c);
-}
+# include "ft_def.h"
+
+t_bool	ft_isbasevalid(char const *base)
+		__attribute__((nonnull(1)));
+
+#endif

@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_dputc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/30 15:04:27 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 19:29:56 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/09 18:12:57 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/09 18:51:58 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_stdio.h"
+#include <unistd.h>
 
-void	ft_putchar(char c)
+int	ft_dputc(int fd, int c)
 {
-	ft_putc(c);
+	unsigned char const	ch = (unsigned char)c;
+
+	return (write(fd, &ch, 1));
 }

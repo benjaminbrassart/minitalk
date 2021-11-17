@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 04:54:42 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 03:51:45 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/09 18:57:20 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ static int	ft_hex_size(unsigned int n)
 	return (i);
 }
 
-static void	ft_puthex(unsigned int n, int b, int (*lf)(int))
+static void	ft_puthex(int fd, unsigned int n, int b, int (*lf)(int))
 {
 	if (--b > 0)
-		ft_puthex(n / 16, b, lf);
-	ft_putchar(lf(BASE_HEX[n % 16]));
+		ft_puthex(fd, n / 16, b, lf);
+	ft_putc(lf(BASE_HEX[n % 16]));
 }
 
 int	ft_print_hex(t_opt *opt, unsigned int n, int (*lf)(int))
@@ -56,7 +56,7 @@ int	ft_print_hex(t_opt *opt, unsigned int n, int (*lf)(int))
 	while ((opt->flags & MIN_WIDTH) && opt->min_width > bytes)
 		bytes += write(opt->fd, " ", 1);
 	if (!(opt->flags & PRECISION && opt->precision == 0 && n == 0))
-		ft_puthex(n, digits, lf);
+		ft_puthex(opt->fd, n, digits, lf);
 	while ((opt->flags & DASH) && opt->min_width > bytes)
 		bytes += write(opt->fd, " ", 1);
 	return (bytes);

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 07:32:58 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 03:51:45 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/09 20:26:40 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	ft_puthex(unsigned long int n, int b)
 {
 	if (--b > 0)
 		ft_puthex(n / 16, b);
-	ft_putchar(BASE_HEX[n % 16]);
+	ft_putc(BASE_HEX[n % 16]);
 }
 
 int	ft_print_pointer(t_opt *opt, va_list args)

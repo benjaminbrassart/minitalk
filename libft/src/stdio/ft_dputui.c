@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_dputui.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/30 15:04:27 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/09 19:29:56 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/09 18:20:06 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/09 18:52:01 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_stdio.h"
 
-void	ft_putchar(char c)
+int	ft_dputui(int fd, unsigned int n)
 {
-	ft_putc(c);
+	int	printed_chars;
+
+	printed_chars = 0;
+	if (n >= 10)
+	{
+		printed_chars = ft_dputui(fd, n / 10);
+		if (printed_chars == -1)
+			return (-1);
+	}
+	return (printed_chars + ft_dputc(fd, n % 10 + '0'));
 }

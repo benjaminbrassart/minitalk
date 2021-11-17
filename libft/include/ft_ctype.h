@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 13:59:06 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/10 18:00:47 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/09 17:45:49 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_isalpha(int c);
 int	ft_isalnum(int c);
 
 int	ft_isascii(int c);
+
+int	ft_isblank(int c);
 
 int	ft_iscntrl(int c);
 

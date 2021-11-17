@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 15:05:45 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/05/30 15:06:12 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/09 19:31:23 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_putstr(char const *s)
 {
-	ft_putstr_fd(s, 1);
+	ft_puts(s);
 }
