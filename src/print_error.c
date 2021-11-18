@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _msg.c                                             :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 08:29:24 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/19 03:52:25 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/17 21:59:41 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/17 22:16:40 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdlib.h"
-#include "minitalk.h"
+#include "colors.h"
+#include "ft_stdio.h"
+#include "mterror.h"
 
-char	**_msg(void)
+int	print_error(char const *s)
 {
-	static char	*msg = FT_NULL;
-
-	return (&msg);
+	return (ft_dprintf(2, FAILURE "%s\n" RESET, s));
 }

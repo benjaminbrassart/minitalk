@@ -6,10 +6,11 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 02:58:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/17 08:33:58 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/17 22:42:32 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_def.h"
 #include "ft_stdio.h"
 #include "minitalk.h"
 #include "minitalk_client.h"

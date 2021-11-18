@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 02:55:11 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/19 03:52:25 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/18 00:19:03 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 #include "ft_stdlib.h"
 #include "minitalk.h"
 #include "minitalk_server.h"
+#include "mterror.h"
 #include <signal.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
-static void	on_signal(int sig, siginfo_t *si, void *_uctx)
+static void	on_signal(int sig, siginfo_t *si, void *ctx __attribute__((unused)))
 {
 	static int		i = 0;
 	static char		c = 0;
 	int				bit;
 
-	(void)_uctx;
 	bit = 0;
 	if (sig == SIGUSR2)
 		++bit;
@@ -33,8 +34,9 @@ static void	on_signal(int sig, siginfo_t *si, void *_uctx)
 	{
 		if (c == 0)
 		{
-			ft_printf("%s\n", *_msg());
-			server_message_reset();
+			server_buffer_flush();
+			server_message_put();
+			server_reset();
 		}
 		else
 			server_message_append(c);
@@ -45,7 +47,7 @@ static void	on_signal(int sig, siginfo_t *si, void *_uctx)
 	kill(si->si_pid, SIGUSR1);
 }
 
-static void	setup(void)
+static t_bool	setup(void)
 {
 	static struct sigaction	sa = {};
 
@@ -53,9 +55,10 @@ static void	setup(void)
 	sa.sa_flags |= SA_SIGINFO;
 	if (sigaction(SIGUSR1, &sa, FT_NULL) || sigaction(SIGUSR2, &sa, FT_NULL))
 	{
-		ft_dprintf(2, "Failed to install signal handlers.\n");
-		server_exit(1);
+		print_error(ERROR_SIGACTION_FAILED);
+		return (false);
 	}
+	return (true);
 }
 
 int	main(void)

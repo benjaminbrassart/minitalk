@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 01:04:09 by bbrassar          #+#    #+#              #
-#    Updated: 2021/10/19 03:52:25 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/11/18 00:29:58 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,19 @@
 #
 
 CFLAGS					= -Wall -Werror -Wextra -c -MMD -I$(DIR_LIBFT)/include \
-							-I$(DIR_INCLUDE) -g
+							-I$(DIR_INCLUDE)
 
-LDFLAGS					= -lft -L$(DIR_LIBFT) -g
+LDFLAGS					= -lft -L$(DIR_LIBFT)
+
+ifeq ($(DEBUG), true)
+CFLAGS					+= -g
+
+LDFLAGS					+= -g
+endif
 
 DIR_SRC					= src
 
-SRC_COMMON				= _msg.c
+SRC_COMMON				= print_error.c
 
 DIR_OBJ					= obj
 
@@ -45,8 +51,7 @@ NAME_LIBFT				= $(DIR_LIBFT)/libft.a
 
 NAME_CLIENT				= client
 
-SRC_CLIENT				= main.c check_args.c send_byte.c send_wait.c \
-							on_error.c on_success.c
+SRC_CLIENT				= main.c get_client.c check_args.c send_byte.c send_wait.c
 
 OBJ_CLIENT				= $(addprefix $(DIR_OBJ)/$(NAME_CLIENT)/, $(SRC_CLIENT:.c=.o))
 
@@ -56,8 +61,8 @@ OBJ_CLIENT				= $(addprefix $(DIR_OBJ)/$(NAME_CLIENT)/, $(SRC_CLIENT:.c=.o))
 
 NAME_SERVER				= server
 
-SRC_SERVER				= main.c server_exit.c server_message_append.c \
-							server_message_reset.c
+SRC_SERVER				= main.c get_server.c server_buffer_clear.c server_buffer_flush.c \
+							server_message_append.c server_message_put.c server_reset.c
 
 OBJ_SERVER				= $(addprefix $(DIR_OBJ)/$(NAME_SERVER)/, $(SRC_SERVER:.c=.o))
 
@@ -80,7 +85,7 @@ $(DIR_OBJ)/%.o:			$(DIR_SRC)/%.c
 						$(CC) $(CFLAGS) $< -o $@
 
 $(NAME_LIBFT):			$(DIR_LIBFT)/Makefile
-						$(MAKE) -C $(DIR_LIBFT) libft.a clean
+						$(MAKE) -C $(DIR_LIBFT) DEBUG=$(DEBUG) libft.a clean
 
 clean:
 						rm -rf $(DIR_OBJ)

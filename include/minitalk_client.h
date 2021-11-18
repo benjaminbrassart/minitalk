@@ -6,21 +6,32 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 03:25:51 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/09/29 08:42:47 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/18 00:13:20 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_CLIENT_H
 # define MINITALK_CLIENT_H
 
-void		check_args(int argc, char *argv[]);
+# include "colors.h"
+# include "ft_def.h"
+# include "minitalk.h"
 
-void		on_error(int sig);
+typedef struct s_client	t_client;
 
-void		on_success(int sig);
+struct s_client
+{
+	int			server_pid;
+	char const	*message;
+	char const	*current_char;
+};
+
+t_bool		check_args(int argc, char *argv[]);
 
 int			send_byte(int pid, unsigned char byte);
 
-int			send_wait(int pid, int bit);
+t_bool		send_wait(int pid, int bit);
+
+t_client	*get_client(void);
 
 #endif

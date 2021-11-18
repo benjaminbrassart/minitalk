@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_message_append.c                            :+:      :+:    :+:   */
+/*   get_client.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 05:26:25 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/18 00:00:55 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/17 21:45:39 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/17 22:48:31 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_stdio.h"
-#include "ft_stdlib.h"
-#include "ft_string.h"
-#include "minitalk.h"
-#include "minitalk_server.h"
-#include "mterror.h"
-#include <stdlib.h>
+#include "ft_def.h"
+#include "minitalk_client.h"
 
-void	server_message_append(char byte)
+t_client	*get_client(void)
 {
-	t_server *const	server = get_server();
+	static t_client	client = {-1, FT_NULL, FT_NULL};
 
-	if (server->buffer_size == SERVER_BUFFER_SIZE)
-		server_buffer_flush();
-	server->buffer[server->buffer_size++] = byte;
+	return (&client);
 }
