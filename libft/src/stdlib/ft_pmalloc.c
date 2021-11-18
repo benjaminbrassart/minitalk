@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_pmalloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 15:31:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/18 02:00:41 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/18 00:58:27 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/18 01:57:00 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_stdlib.h"
+#include <stdlib.h>
 
-void	*ft_memcpy(void *dst, void const *src, t_size len)
+void	*ft_pmalloc(t_size size, void **out_p)
 {
-	unsigned char		*d;
-	unsigned char const	*s;
-
-	d = dst;
-	s = src;
-	while (len--)
-		*d++ = *s++;
-	return (dst);
+	*out_p = malloc(size);
+	return (*out_p);
 }

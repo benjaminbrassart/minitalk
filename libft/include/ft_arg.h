@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_arg.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 15:31:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/18 02:00:41 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/18 00:39:51 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/18 01:31:09 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_ARG_H
+# define FT_ARG_H
 
-void	*ft_memcpy(void *dst, void const *src, t_size len)
+# include "ft_def.h"
+
+typedef enum e_limit
 {
-	unsigned char		*d;
-	unsigned char const	*s;
+	LIMIT_ERROR,
+	LIMIT_INBOUND,
+	LIMIT_OVERFLOW,
+	LIMIT_UNDERFLOW
+}	t_limit;
 
-	d = dst;
-	s = src;
-	while (len--)
-		*d++ = *s++;
-	return (dst);
-}
+t_bool	check_int(char const *arg)
+		__attribute__((nonnull(1)));
+
+t_limit	check_int_limits(char const *arg)
+		__attribute__((nonnull(1)));
+
+#endif

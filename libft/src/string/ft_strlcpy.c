@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 14:04:19 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/07/22 14:15:24 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/18 02:01:09 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ t_size	ft_strlcpy(char *dst, char const *src, t_size dstsize)
 	t_size	len;
 	int		nt;
 
-	if (!(dst && src))
-		return (0);
 	len = ft_strlen(src);
 	nt = (dstsize > 0);
 	while (*src && dstsize-- > 1)

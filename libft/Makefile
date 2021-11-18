@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 02:36:44 by bbrassar          #+#    #+#              #
-#    Updated: 2021/11/17 22:51:11 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/11/18 02:15:00 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,9 @@ endif
 DIR_SRC				= src
 
 SRC					=	$(addsuffix .c, \
+							$(addprefix arg/, \
+								check_int_limits check_int \
+							) \
 							$(addprefix ctype/ft_, \
 								isalnum isalpha isascii iscntrl isdigit \
 								isgraph islower isprint ispunct isspace \
@@ -55,11 +58,12 @@ SRC					=	$(addsuffix .c, \
 								strncasecmp strncat strncmp strncpy strndup \
 								strnlen strnstr strrchr strrepeat strrev \
 								strstr strtrim substr strrstr strpbrk strspn \
-								stpcpy strchrnul \
+								stpcpy strchrnul strnew \
 							) \
 							$(addprefix stdlib/ft_, \
 								calloc atoi atoll itoa lltoa strtoi strtol \
-								strtoll strtoui strtoul strtoull \
+								strtoll strtoui strtoul strtoull pmalloc \
+								pcalloc \
 							) \
 							$(addprefix get_next_line/, \
 								get_next_line wrap_get_next_line \

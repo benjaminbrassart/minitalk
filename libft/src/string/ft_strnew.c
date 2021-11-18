@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 15:31:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/18 02:00:41 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/18 01:53:11 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/18 01:54:04 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_stdlib.h"
+#include "ft_string.h"
 
-void	*ft_memcpy(void *dst, void const *src, t_size len)
+char	*ft_strnew(t_size len)
 {
-	unsigned char		*d;
-	unsigned char const	*s;
+	char	*new_str;
 
-	d = dst;
-	s = src;
-	while (len--)
-		*d++ = *s++;
-	return (dst);
+	return (ft_calloc(len + 1, sizeof (*new_str)));
 }

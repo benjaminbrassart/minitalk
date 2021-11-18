@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   check_int.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 15:31:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/18 02:00:41 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/18 00:44:32 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/18 00:48:12 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_arg.h"
+#include "ft_ctype.h"
 
-void	*ft_memcpy(void *dst, void const *src, t_size len)
+t_bool	check_int(char const *arg)
 {
-	unsigned char		*d;
-	unsigned char const	*s;
+	int	index;
 
-	d = dst;
-	s = src;
-	while (len--)
-		*d++ = *s++;
-	return (dst);
+	index = 0;
+	while (ft_isspace(*arg))
+		++arg;
+	if (*arg == '+' || *arg == '-')
+		++arg;
+	while (ft_isdigit(arg[index]))
+		++index;
+	return (arg[index] == 0 && index != 0);
 }

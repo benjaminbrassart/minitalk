@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 14:11:44 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/10/01 17:38:20 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/18 01:57:24 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,23 @@ int					ft_atoi(char const *s)
 long long			ft_atoll(char const *s)
 					__attribute__((nonnull(1)));
 
-void				*ft_calloc(t_size count, t_size size);
+void				*ft_calloc(t_size count, t_size size)
+					__attribute__((malloc));
 
-char				*ft_itoa(int n);
+void				*ft_pmalloc(t_size size, void **out_p)
+					__attribute__((malloc, nonnull(2)));
 
-char				*ft_ltoa(long n);
+void				*ft_pcalloc(t_size count, t_size size, void **out_p)
+					__attribute__((malloc, nonnull(3)));
 
-char				*ft_lltoa(long long n);
+char				*ft_itoa(int n)
+					__attribute__((malloc));
+
+char				*ft_ltoa(long n)
+					__attribute__((malloc));
+
+char				*ft_lltoa(long long n)
+					__attribute__((malloc));
 
 int					ft_strtoi(char const *s, char const **endptr)
 					__attribute__((nonnull(1)));
