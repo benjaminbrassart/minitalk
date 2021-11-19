@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 01:04:09 by bbrassar          #+#    #+#              #
-#    Updated: 2021/11/18 00:29:58 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/11/19 05:46:20 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,8 @@ OBJ_CLIENT				= $(addprefix $(DIR_OBJ)/$(NAME_CLIENT)/, $(SRC_CLIENT:.c=.o))
 NAME_SERVER				= server
 
 SRC_SERVER				= main.c get_server.c server_buffer_clear.c server_buffer_flush.c \
-							server_message_append.c server_message_put.c server_reset.c
+							server_message_append.c server_message_put.c server_reset.c \
+							server_shutdown.c
 
 OBJ_SERVER				= $(addprefix $(DIR_OBJ)/$(NAME_SERVER)/, $(SRC_SERVER:.c=.o))
 
