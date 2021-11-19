@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 01:04:09 by bbrassar          #+#    #+#              #
-#    Updated: 2021/11/19 05:46:20 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/11/19 06:00:49 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ NAME_LIBFT				= $(DIR_LIBFT)/libft.a
 
 NAME_CLIENT				= client
 
-SRC_CLIENT				= main.c get_client.c check_args.c send_byte.c send_wait.c
+SRC_CLIENT				= main.c get_client.c check_args.c send_byte.c send_wait.c get_sig.c
 
 OBJ_CLIENT				= $(addprefix $(DIR_OBJ)/$(NAME_CLIENT)/, $(SRC_CLIENT:.c=.o))
 
@@ -63,7 +63,7 @@ NAME_SERVER				= server
 
 SRC_SERVER				= main.c get_server.c server_buffer_clear.c server_buffer_flush.c \
 							server_message_append.c server_message_put.c server_reset.c \
-							server_shutdown.c
+							server_shutdown.c get_bit.c
 
 OBJ_SERVER				= $(addprefix $(DIR_OBJ)/$(NAME_SERVER)/, $(SRC_SERVER:.c=.o))
 

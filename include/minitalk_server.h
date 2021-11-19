@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:53:01 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/19 05:46:03 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/19 05:59:45 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ void		server_reset(void);
 void		server_shutdown(void);
 
 t_server	*get_server(void);
+
+int			get_bit(int sig);
 
 #endif

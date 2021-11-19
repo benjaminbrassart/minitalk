@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 02:55:11 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/19 05:46:36 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/19 05:56:36 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,16 @@ static void	on_signal(int sig, siginfo_t *si, void *ctx __attribute__((unused)))
 {
 	static int		i = 0;
 	static char		c = 0;
-	int				bit;
 
-	bit = 0;
-	if (sig == SIGUSR2)
-		++bit;
-	c = (c << 1) | bit;
+	c = (c << 1) | get_bit(sig);
 	if (++i >= 8)
 	{
 		if (c == 0)
 		{
 			server_buffer_flush();
 			server_message_put();
-			if (ft_strcmp(get_server()->message, SHUTDOWN_COMMAND) == 0)
+			if (SHUTDOWN_COMMAND && ft_strcmp(get_server()->message,
+					SHUTDOWN_COMMAND) == 0)
 				server_shutdown();
 			server_reset();
 		}
