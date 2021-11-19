@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 03:25:51 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/19 05:59:24 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/19 06:05:11 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ t_bool		send_wait(int pid, int bit);
 
 t_client	*get_client(void);
 
-int			get_sig(int bit);
+int			get_sig(char byte, int bit);
 
 #endif

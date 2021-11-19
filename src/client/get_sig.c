@@ -6,15 +6,15 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 05:56:54 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/19 05:59:16 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/19 06:05:01 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 
-int	get_sig(int bit)
+int	get_sig(char byte, int bit)
 {
-	if (bit & 1)
+	if (byte & (1 << bit))
 		return (SIGUSR2);
 	return (SIGUSR1);
 }

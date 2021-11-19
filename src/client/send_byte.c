@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 02:58:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/19 05:58:29 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/19 06:04:29 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	send_byte(int pid, unsigned char byte)
 	i = 0;
 	while (i < 8)
 	{
-		if (!send_wait(pid, get_sig(byte & (1 << (7 - i)))))
+		if (!send_wait(pid, get_sig(byte, 7 - i)))
 			break ;
 		++i;
 		usleep(SLEEP_TIME);
