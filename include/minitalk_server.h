@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:53:01 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/18 00:20:40 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/19 05:46:03 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "ft_def.h"
 # include "minitalk.h"
+
+# define SHUTDOWN_COMMAND "I command you to stop"
 
 # ifndef SERVER_BUFFER_SIZE
 #  define SERVER_BUFFER_SIZE 32UL
@@ -28,10 +30,10 @@ typedef struct s_server	t_server;
 struct s_server
 {
 	t_bool	error;
+	t_bool	running;
 	char	buffer[SERVER_BUFFER_SIZE];
 	t_size	buffer_size;
 	char	*message;
-	int		client_pid;
 };
 
 void		server_buffer_clear(void);
@@ -43,6 +45,8 @@ void		server_message_append(char byte);
 void		server_message_put(void);
 
 void		server_reset(void);
+
+void		server_shutdown(void);
 
 t_server	*get_server(void);
 

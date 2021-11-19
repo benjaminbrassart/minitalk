@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_server.c                                       :+:      :+:    :+:   */
+/*   server_shutdown.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/17 23:00:45 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/19 05:32:49 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/19 05:44:57 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/19 05:46:26 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_def.h"
+#include "ft_stdio.h"
 #include "minitalk_server.h"
 
-t_server	*get_server(void)
+void	server_shutdown(void)
 {
-	static t_server	server = {false, true, {}, 0, FT_NULL};
-
-	return (&server);
+	get_server()->running = false;
+	ft_putnl("Shutdown command received.");
 }

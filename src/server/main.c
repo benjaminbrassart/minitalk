@@ -6,12 +6,13 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 02:55:11 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/18 00:19:03 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/19 05:46:36 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stdio.h"
 #include "ft_stdlib.h"
+#include "ft_string.h"
 #include "minitalk.h"
 #include "minitalk_server.h"
 #include "mterror.h"
@@ -36,6 +37,8 @@ static void	on_signal(int sig, siginfo_t *si, void *ctx __attribute__((unused)))
 		{
 			server_buffer_flush();
 			server_message_put();
+			if (ft_strcmp(get_server()->message, SHUTDOWN_COMMAND) == 0)
+				server_shutdown();
 			server_reset();
 		}
 		else
@@ -63,9 +66,14 @@ static t_bool	setup(void)
 
 int	main(void)
 {
-	setup();
+	t_server *const	server = get_server();
+
+	if (!setup())
+		return (1);
 	ft_printf("minitalk server is running with pid %d\n\n", getpid());
-	while (1)
+	while (server->running && !server->error)
 		pause();
+	if (server->error)
+		return (1);
 	return (0);
 }

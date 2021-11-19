@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 06:21:23 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/18 00:01:18 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/19 05:41:21 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,4 @@ void	server_reset(void)
 	server_buffer_clear();
 	free(server->message);
 	server->message = FT_NULL;
-	server->client_pid = -1;
 }
