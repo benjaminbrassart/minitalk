@@ -23,8 +23,8 @@
 		{
 			"label": "norminette",
 			"type": "shell",
-			"command": "sh",
-			"args": ["-c", "! norminette src include | grep -v 'OK!$'"],
+			"command": "norminette.sh",
+			"args": ["src", "include"],
 			"group": {
 				"kind": "test",
 				"isDefault": true
