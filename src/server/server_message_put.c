@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 23:04:55 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/17 23:33:36 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/24 17:06:31 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,8 @@
 
 void	server_message_put(void)
 {
-	ft_putnl(get_server()->message);
+	t_server *const	server = get_server();
+
+	if (server->message)
+		ft_putnl(server->message);
 }
