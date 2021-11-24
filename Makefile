@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 01:04:09 by bbrassar          #+#    #+#              #
-#    Updated: 2021/11/19 06:00:49 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/11/24 19:34:32 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,18 +75,14 @@ $(NAME_CLIENT):			$(NAME_LIBFT) $(OBJ_CLIENT) $(OBJ_COMMON)
 $(NAME_SERVER):			$(NAME_LIBFT) $(OBJ_SERVER) $(OBJ_COMMON)
 						$(CC) $(filter %.o, $^) -o $@ $(LDFLAGS)
 
-$(DIR_LIBFT)/Makefile:
-						git submodule init $(DIR_LIBFT)
-						git submodule update $(DIR_LIBFT)
-
 -include $(DEPENDENCIES)
 
 $(DIR_OBJ)/%.o:			$(DIR_SRC)/%.c
 						@mkdir -p $(@D)
 						$(CC) $(CFLAGS) $< -o $@
 
-$(NAME_LIBFT):			$(DIR_LIBFT)/Makefile
-						$(MAKE) -C $(DIR_LIBFT) DEBUG=$(DEBUG) libft.a clean
+$(NAME_LIBFT):
+						$(MAKE) -C $(DIR_LIBFT) DEBUG=$(DEBUG) libft.a
 
 clean:
 						rm -rf $(DIR_OBJ)
