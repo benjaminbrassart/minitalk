@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:53:01 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/19 05:59:45 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/24 17:27:05 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "ft_def.h"
 # include "minitalk.h"
-
-# define SHUTDOWN_COMMAND "I command you to stop"
 
 # ifndef SERVER_BUFFER_SIZE
 #  define SERVER_BUFFER_SIZE 32UL

@@ -6,25 +6,21 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 02:55:11 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/19 05:56:36 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/24 17:28:48 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stdio.h"
-#include "ft_stdlib.h"
-#include "ft_string.h"
 #include "minitalk.h"
 #include "minitalk_server.h"
 #include "mterror.h"
 #include <signal.h>
-#include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
 
 static void	on_signal(int sig, siginfo_t *si, void *ctx __attribute__((unused)))
 {
-	static int		i = 0;
-	static char		c = 0;
+	static int	i = 0;
+	static char	c = 0;
 
 	c = (c << 1) | get_bit(sig);
 	if (++i >= 8)
@@ -33,9 +29,6 @@ static void	on_signal(int sig, siginfo_t *si, void *ctx __attribute__((unused)))
 		{
 			server_buffer_flush();
 			server_message_put();
-			if (SHUTDOWN_COMMAND && ft_strcmp(get_server()->message,
-					SHUTDOWN_COMMAND) == 0)
-				server_shutdown();
 			server_reset();
 		}
 		else
@@ -58,6 +51,7 @@ static t_bool	setup(void)
 		print_error(ERROR_SIGACTION_FAILED);
 		return (false);
 	}
+	server_reset();
 	return (true);
 }
 
