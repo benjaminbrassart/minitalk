@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/27 01:04:09 by bbrassar          #+#    #+#              #
-#    Updated: 2021/11/24 19:34:32 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/11/25 23:05:43 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 # COMMON
 #
 
-CFLAGS					= -Wall -Werror -Wextra -c -MMD -I$(DIR_LIBFT)/include \
+CFLAGS					= -Wall -Werror -Wextra -c -MMD -MP -I$(DIR_LIBFT)/include \
 							-I$(DIR_INCLUDE)
 
 LDFLAGS					= -lft -L$(DIR_LIBFT)
@@ -35,7 +35,9 @@ OBJ_COMMON				= $(addprefix $(DIR_OBJ)/, $(SRC_COMMON:.c=.o))
 
 DIR_INCLUDE				= include
 
-DEPENDENCIES			= $($(OBJ_CLIENT) $(OBJ_SERVER) $(OBJ_COMMON):.o=.d)
+OBJ						= $(OBJ_CLIENT) $(OBJ_SERVER) $(OBJ_COMMON)
+
+DEPENDENCIES			= $(OBJ:.o=.d)
 
 #
 # LIBFT
