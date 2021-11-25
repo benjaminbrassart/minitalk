@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 03:03:57 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/19 06:05:33 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/25 22:01:45 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,10 @@ static void	_on_success(int sig __attribute__((unused)))
 {
 	static int	i = 0;
 
-	ft_putc('.');
 	if (++i >= 8)
 	{
 		if (*get_client()->current_char == 0)
-			ft_putnl(SUCCESS " OK" RESET);
+			ft_putnl(SUCCESS "OK" RESET);
 		i = 0;
 	}
 }
