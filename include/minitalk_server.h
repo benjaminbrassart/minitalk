@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:53:01 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/24 17:27:05 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/25 22:06:08 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "minitalk.h"
 
 # ifndef SERVER_BUFFER_SIZE
-#  define SERVER_BUFFER_SIZE 32UL
+#  define SERVER_BUFFER_SIZE 1024UL
 # endif
 # if SERVER_BUFFER_SIZE < 1
 #  error "Minimum SERVER_BUFFER_SIZE is 1!"
