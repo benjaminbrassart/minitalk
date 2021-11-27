@@ -5,19 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/09/27 01:04:09 by bbrassar          #+#    #+#              #
-#    Updated: 2021/11/25 23:15:02 by bbrassar         ###   ########.fr        #
+#    Created: 2021/11/27 16:00:04 by bbrassar          #+#    #+#              #
+#    Updated: 2021/11/27 16:59:36 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#
-# COMMON
-#
+NAME_CLIENT				= client
 
-CFLAGS					= -Wall -Werror -Wextra -c -MMD -MP -I$(DIR_LIBFT)/include \
-							-I$(DIR_INCLUDE)
+NAME_SERVER				= server
 
-LDFLAGS					= -lft -L$(DIR_LIBFT)
+CFLAGS					= -Wall -Werror -Wextra -c  -I. -MMD -MP
 
 ifeq ($(DEBUG), true)
 CFLAGS					+= -g
@@ -25,55 +22,19 @@ endif
 
 DIR_SRC					= src
 
-SRC_COMMON				= print_error.c
+SRC_CLIENT				= client.c
+
+SRC_SERVER				= server.c buffer.c
 
 DIR_OBJ					= obj
 
-OBJ_COMMON				= $(addprefix $(DIR_OBJ)/, $(SRC_COMMON:.c=.o))
+OBJ_CLIENT				= $(addprefix $(DIR_OBJ)/, $(SRC_CLIENT:.c=.o))
 
-DIR_INCLUDE				= include
+OBJ_SERVER				= $(addprefix $(DIR_OBJ)/, $(SRC_SERVER:.c=.o))
 
-OBJ						= $(OBJ_CLIENT) $(OBJ_SERVER) $(OBJ_COMMON)
-
-DEPENDENCIES			= $(OBJ:.o=.d)
-
-#
-# LIBFT
-#
-
-DIR_LIBFT				= libft
-
-NAME_LIBFT				= $(DIR_LIBFT)/libft.a
-
-#
-# CLIENT
-#
-
-NAME_CLIENT				= client
-
-SRC_CLIENT				= main.c get_client.c check_args.c send_byte.c send_wait.c get_sig.c
-
-OBJ_CLIENT				= $(addprefix $(DIR_OBJ)/$(NAME_CLIENT)/, $(SRC_CLIENT:.c=.o))
-
-#
-# SERVER
-#
-
-NAME_SERVER				= server
-
-SRC_SERVER				= main.c get_server.c server_buffer_clear.c server_buffer_flush.c \
-							server_message_append.c server_message_put.c server_reset.c \
-							server_shutdown.c get_bit.c
-
-OBJ_SERVER				= $(addprefix $(DIR_OBJ)/$(NAME_SERVER)/, $(SRC_SERVER:.c=.o))
+DEPENDENCIES			= $(patsubst %.o,%.d,$(OBJ_CLIENT) $(OBJ_SERVER))
 
 all:					$(NAME_CLIENT) $(NAME_SERVER)
-
-$(NAME_CLIENT):			$(NAME_LIBFT) $(OBJ_CLIENT) $(OBJ_COMMON)
-						$(CC) $(filter %.o, $^) -o $@ $(LDFLAGS)
-
-$(NAME_SERVER):			$(NAME_LIBFT) $(OBJ_SERVER) $(OBJ_COMMON)
-						$(CC) $(filter %.o, $^) -o $@ $(LDFLAGS)
 
 -include $(DEPENDENCIES)
 
@@ -81,8 +42,11 @@ $(DIR_OBJ)/%.o:			$(DIR_SRC)/%.c
 						@mkdir -p $(@D)
 						$(CC) $(CFLAGS) $< -o $@
 
-$(NAME_LIBFT):
-						$(MAKE) -C $(DIR_LIBFT) libft.a
+$(NAME_CLIENT):			$(OBJ_CLIENT)
+						$(CC) $^ -o $@
+
+$(NAME_SERVER):			$(OBJ_SERVER)
+						$(CC) $^ -o $@
 
 clean:
 						rm -rf $(DIR_OBJ)

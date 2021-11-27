@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   send_byte.c                                        :+:      :+:    :+:   */
+/*   server.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 02:58:32 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/19 06:04:29 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/11/27 15:52:41 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/11/27 17:54:16 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_def.h"
-#include "ft_stdio.h"
-#include "minitalk.h"
-#include "minitalk_client.h"
-#include <signal.h>
-#include <unistd.h>
+#ifndef SERVER_H
+# define SERVER_H
 
-int	send_byte(int pid, unsigned char byte)
+# ifndef SERVER_BUFFER_SIZE
+#  define SERVER_BUFFER_SIZE 1024
+# endif
+
+typedef struct s_server
 {
-	int	i;
+	char	buf[SERVER_BUFFER_SIZE];
+	int		buf_len;
+	char	*msg;
+	int		msg_len;
+}	t_server;
 
-	i = 0;
-	while (i < 8)
-	{
-		if (!send_wait(pid, get_sig(byte, 7 - i)))
-			break ;
-		++i;
-		usleep(SLEEP_TIME);
-	}
-	return (i);
-}
+void	buf_flush(t_server *server);
+
+void	buf_append(t_server *server, char c);
+
+void	server_clear(t_server *server);
+
+void	error(char const *s);
+
+#endif
