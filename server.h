@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:52:41 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/27 17:54:16 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/27 20:36:43 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 typedef struct s_server
 {
+	int		client_pid;
 	char	buf[SERVER_BUFFER_SIZE];
 	int		buf_len;
 	char	*msg;
