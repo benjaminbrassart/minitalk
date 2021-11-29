@@ -1,6 +1,0 @@
-obj/
-*.dSYM
-*.a
-*.so
-test/
-.vscode/
