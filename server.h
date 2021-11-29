@@ -6,14 +6,18 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:52:41 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/27 20:36:43 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/29 16:48:48 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_H
 # define SERVER_H
 
-# ifndef SERVER_BUFFER_SIZE
+# ifdef SERVER_BUFFER_SIZE
+#  if SERVER_BUFFER_SIZE < 1
+#   error 'SERVER_BUFFER_SIZE' must have a value of at least 1!
+#  endif
+# else
 #  define SERVER_BUFFER_SIZE 1024
 # endif
 
