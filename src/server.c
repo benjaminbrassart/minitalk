@@ -6,13 +6,12 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:52:12 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/29 16:37:23 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/29 16:47:03 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 #include <signal.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
