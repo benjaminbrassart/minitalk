@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:31:44 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/27 18:52:01 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/11/27 20:34:43 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static void	send_str(int pid, char *message)
 			if (kill(pid, signo) == -1)
 				error("Failed to send signal\n");
 			pause();
-			usleep(100);
 		}
 		++message;
 		i = 8;
@@ -71,7 +70,6 @@ static void	send_str(int pid, char *message)
 		if (kill(pid, SIGUSR1) == -1)
 			error("Failed to send signal\n");
 		pause();
-		usleep(100);
 	}
 }
 
