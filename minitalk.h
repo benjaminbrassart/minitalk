@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:32:37 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/12/01 23:45:58 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/12/02 00:12:47 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define ERROR_MALLOC "Failed to allocate memory"
 # define ERROR_KILL "Failed to send signal"
-# define ERROR_ARGC "Expected 2 arguments"
+# define ERROR_ARGC_CLIENT "Expected 2 arguments"
 # define ERROR_ARGV_PID "Expected argument 1 to be a valid process id"
 
 void	exit_error(char const *message);

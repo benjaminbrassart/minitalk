@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:32:13 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/12/02 00:08:04 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/12/02 00:12:57 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char *argv[])
 	char	*end;
 
 	if (argc != 3)
-		exit_error(ERROR_ARGC);
+		exit_error(ERROR_ARGC_CLIENT);
 	pid = ft_strtoi(argv[1], &end);
 	if (*end != 0 || (pid == 0 && argv[1] == end))
 		exit_error(ERROR_ARGV_PID);
