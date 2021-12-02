@@ -6,9 +6,11 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/01 23:57:37 by bbrassar          #+#    #+#              #
-#    Updated: 2021/12/02 00:04:31 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/12/02 02:18:11 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+CC						= gcc
 
 CFLAGS					= -Wall -Werror -Wextra -c -MMD -MP -I.
 
@@ -24,7 +26,7 @@ DIR_SRC					= src
 
 SRC_CLIENT				= client.c utils.c
 
-SRC_SERVER				= 
+SRC_SERVER				= server.c utils.c buffer.c
 
 DIR_OBJ					= obj
 
@@ -42,7 +44,9 @@ $(NAME_CLIENT):			$(OBJ_CLIENT)
 $(NAME_SERVER):			$(OBJ_SERVER)
 						$(CC) $^ -o $@
 
-$(DIR_OBJ)/%.o:			$(DIR_SRC)/%.c
+-include $(DEPENDENCIES)
+
+$(DIR_OBJ)/%.o:			$(DIR_SRC)/%.c Makefile
 						@mkdir -p $(@D)
 						$(CC) $(CFLAGS) $< -o $@
 

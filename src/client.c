@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:32:13 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/12/02 00:12:57 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/12/02 03:09:43 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-static int	ft_strtoi(char const *s, char **end_ptr)
+static inline int	ft_strtoi(char const *s, char **end_ptr)
 {
-	int	i;
+	register int	i;
 
 	i = 0;
 	while (*s >= '0' && *s <= '9')
@@ -26,22 +26,20 @@ static int	ft_strtoi(char const *s, char **end_ptr)
 	return (i);
 }
 
-static int	ft_strilen(char const *s)
+static void	handle_signal(int signo, siginfo_t *si, void *ctx)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-		++i;
-	return (i);
+	(void)ctx;
+	(void)si;
+	if (signo == SIGUSR2)
+		exit_error(NO_PID, ERROR_SERVER_RESPONSE);
 }
 
 static void	send_str(int pid, char const *s)
 {
-	int const	len = ft_strilen(s);
-	int			i;
-	int			b;
-	int			signo;
+	unsigned int const	len = ft_strlen(s);
+	unsigned int		i;
+	int					b;
+	int					signo;
 
 	i = -1;
 	while (++i <= len)
@@ -53,23 +51,28 @@ static void	send_str(int pid, char const *s)
 				signo = SIGUSR1;
 			else
 				signo = SIGUSR2;
-			try_kill(pid, signo);
+			kill(pid, signo);
 			pause();
 		}
-		write(1, "\n", 1);
+		write(1, s[i] == 0 ? "\n" : s + i, 1);
 	}
 }
 
 int	main(int argc, char *argv[])
 {
-	int		pid;
-	char	*end;
+	struct sigaction	sa;
+	int					pid;
+	char				*end;
 
 	if (argc != 3)
-		exit_error(ERROR_ARGC_CLIENT);
+		exit_error(NO_PID, ERROR_ARGC_CLIENT);
 	pid = ft_strtoi(argv[1], &end);
 	if (*end != 0 || (pid == 0 && argv[1] == end))
-		exit_error(ERROR_ARGV_PID);
+		exit_error(NO_PID, ERROR_ARGV_PID);
+	sa.sa_flags = SA_SIGINFO;
+	sa.sa_sigaction = handle_signal;
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	send_str(pid, argv[2]);
 	return (EXIT_SUCCESS);
 }
