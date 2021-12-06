@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/27 16:00:04 by bbrassar          #+#    #+#              #
-#    Updated: 2021/11/27 16:59:36 by bbrassar         ###   ########.fr        #
+#    Created: 2021/12/06 09:57:23 by bbrassar          #+#    #+#              #
+#    Updated: 2021/12/06 18:27:55 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME_CLIENT				= client
 
 NAME_SERVER				= server
 
-CFLAGS					= -Wall -Werror -Wextra -c  -I. -MMD -MP
+NAME					= $(NAME_CLIENT) $(NAME_SERVER)
+
+CFLAGS					= -Wall -Werror -Wextra -c -I. -MMD -MP
 
 ifeq ($(DEBUG), true)
 CFLAGS					+= -g
@@ -22,9 +24,9 @@ endif
 
 DIR_SRC					= src
 
-SRC_CLIENT				= client.c
+SRC_CLIENT				= client.c utils.c
 
-SRC_SERVER				= server.c buffer.c
+SRC_SERVER				= server.c utils.c buffer.c
 
 DIR_OBJ					= obj
 
@@ -34,13 +36,7 @@ OBJ_SERVER				= $(addprefix $(DIR_OBJ)/, $(SRC_SERVER:.c=.o))
 
 DEPENDENCIES			= $(patsubst %.o,%.d,$(OBJ_CLIENT) $(OBJ_SERVER))
 
-all:					$(NAME_CLIENT) $(NAME_SERVER)
-
--include $(DEPENDENCIES)
-
-$(DIR_OBJ)/%.o:			$(DIR_SRC)/%.c
-						@mkdir -p $(@D)
-						$(CC) $(CFLAGS) $< -o $@
+all:					$(NAME)
 
 $(NAME_CLIENT):			$(OBJ_CLIENT)
 						$(CC) $^ -o $@
@@ -48,12 +44,20 @@ $(NAME_CLIENT):			$(OBJ_CLIENT)
 $(NAME_SERVER):			$(OBJ_SERVER)
 						$(CC) $^ -o $@
 
+$(DIR_OBJ)/%.o:			$(DIR_SRC)/%.c
+						@mkdir -p $(@D)
+						$(CC) $(CFLAGS) $< -o $@
+
+-include $(DEPENDENCIES)
+
+bonus:					all
+
 clean:
 						rm -rf $(DIR_OBJ)
 
 fclean:					clean
-						rm -f $(NAME_CLIENT) $(NAME_SERVER)
+						rm -f $(NAME)
 
 re:						fclean all
 
-.PHONY:					all clean fclean re
+.PHONY:					all bonus clean fclean re

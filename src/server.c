@@ -5,90 +5,80 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 15:52:12 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/29 16:47:03 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/12/06 10:48:10 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/12/06 18:57:59 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minitalk.h"
 #include "server.h"
 #include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-void	error(char const *s)
-{
-	int	i;
+#include <string.h>
+#include <stdio.h>
 
-	i = 0;
-	while (s[i])
-		++i;
-	write(2, s, i);
-	exit(EXIT_FAILURE);
-}
-
-static void	handle_sig(int sig, siginfo_t *si, void *uctx)
+static void	handle_sig(int signo, siginfo_t *si, void *uctx)
 {
-	static t_server	server = {0, {}, 0, NULL, 0};
-	static int		i = 0;
-	static char		c = 0;
+	static t_server	server = {NULL, 0, {}, 0, 0, 0, 0};
 
 	(void)uctx;
 	if (si->si_pid)
 		server.client_pid = si->si_pid;
-	c = (c << 1) | (sig == SIGUSR2);
-	if (++i >= 8)
+	server.current_char <<= 1;
+	if (signo == SIGUSR2)
+		server.current_char |= 1;
+	if (++server.counter == 8)
 	{
-		if (c == 0)
+		buf_append(&server, server.current_char);
+		if (server.current_char == 0)
 		{
 			buf_flush(&server);
 			write(1, server.msg, server.msg_len);
-			server_clear(&server);
-			write(1, "\n", 1);
+			server_reset(&server);
 		}
-		else
-			buf_append(&server, c);
-		i = 0;
-		c = 0;
+		server.counter = 0;
+		server.current_char = 0;
 	}
-	usleep(25);
+	usleep(SERVER_SLEEP_TIME);
 	if (kill(server.client_pid, SIGUSR1) == -1)
-		error("Failed to send signal\n");
+		exit_error(NO_PID, ERROR_KILL);
 }
 
 static void	print_pid(void)
 {
-	char	buffer[11];
-	int		pid;
-	int		cnt;
+	int				pid;
+	char			buff[36 + 11 + 2];
+	unsigned int	i;
 
 	pid = getpid();
-	cnt = 11;
-	while (pid)
+	ft_memmove(buff, "Minitalk server is running with pid ", 36);
+	i = 0;
+	while (pid || i == 0)
 	{
-		buffer[--cnt] = pid % 10 + '0';
+		buff[36 + 11 - ++i] = pid % 10 + '0';
 		pid /= 10;
 	}
-	write(1, buffer + cnt, 11 - cnt);
+	ft_memmove(buff + 36, buff + 36 + 11 - i, i);
+	ft_memmove(buff + 36 + i, "\n\n", 2);
+	write(1, buff, 36 + i + 2);
 }
 
-int	main(int argc, char *argv[] __attribute__((unused)))
+int	main(int argc, char *argv[])
 {
 	struct sigaction	sa;
-	sigset_t			sigset;
 
+	(void)argv;
 	if (argc != 1)
-		error("Expected no argument\n");
+		exit_error(NO_PID, ERROR_ARGC_SERVER);
 	sa.sa_flags = SA_SIGINFO;
-	sigemptyset(&sigset);
-	sigaddset(&sigset, SIGINT);
-	sigaddset(&sigset, SIGQUIT);
 	sa.sa_sigaction = handle_sig;
-	sa.sa_mask = sigset;
-	if (sigaction(SIGUSR1, &sa, NULL) || sigaction(SIGUSR2, &sa, NULL))
-		error("Failed to install signal handlers");
-	write(1, "Server is running with pid ", 27);
+	sigemptyset(&sa.sa_mask);
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	print_pid();
-	write(1, "\n\n", 2);
 	while (1)
 		pause();
+	return (EXIT_SUCCESS);
 }
