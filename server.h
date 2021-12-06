@@ -5,37 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 15:52:41 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/11/29 16:48:48 by bbrassar         ###   ########.fr       */
+/*   Created: 2021/12/06 10:07:27 by bbrassar          #+#    #+#             */
+/*   Updated: 2021/12/06 18:05:10 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_H
 # define SERVER_H
 
-# ifdef SERVER_BUFFER_SIZE
-#  if SERVER_BUFFER_SIZE < 1
-#   error 'SERVER_BUFFER_SIZE' must have a value of at least 1!
-#  endif
-# else
-#  define SERVER_BUFFER_SIZE 1024
+# ifndef SERVER_BUFFER_SIZE
+#  define SERVER_BUFFER_SIZE 1024U
 # endif
 
-typedef struct s_server
+# if SERVER_BUFFER_SIZE < 1
+#  error 'SERVER_BUFFER_SIZE' must have a value of at least 1!
+# endif
+
+typedef struct s_server		t_server;
+
+struct s_server
 {
-	int		client_pid;
-	char	buf[SERVER_BUFFER_SIZE];
-	int		buf_len;
-	char	*msg;
-	int		msg_len;
-}	t_server;
+	char			*msg;
+	unsigned int	msg_len;
+	char			buf[SERVER_BUFFER_SIZE];
+	unsigned int	buf_len;
+	int				client_pid;
+	unsigned int	counter;
+	char			current_char;
+};
 
 void	buf_flush(t_server *server);
 
 void	buf_append(t_server *server, char c);
 
-void	server_clear(t_server *server);
-
-void	error(char const *s);
+void	server_reset(t_server *server);
 
 #endif
