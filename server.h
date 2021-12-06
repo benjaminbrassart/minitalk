@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 10:07:27 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/12/06 18:05:10 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/12/06 18:57:44 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # if SERVER_BUFFER_SIZE < 1
 #  error 'SERVER_BUFFER_SIZE' must have a value of at least 1!
 # endif
+
+# define SERVER_SLEEP_TIME 100
 
 typedef struct s_server		t_server;
 

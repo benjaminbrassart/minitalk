@@ -6,7 +6,7 @@
 #    By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/06 09:57:23 by bbrassar          #+#    #+#              #
-#    Updated: 2021/12/06 18:16:35 by bbrassar         ###   ########.fr        #
+#    Updated: 2021/12/06 18:27:55 by bbrassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,10 @@ NAME_SERVER				= server
 NAME					= $(NAME_CLIENT) $(NAME_SERVER)
 
 CFLAGS					= -Wall -Werror -Wextra -c -I. -MMD -MP
+
+ifeq ($(DEBUG), true)
+CFLAGS					+= -g
+endif
 
 DIR_SRC					= src
 

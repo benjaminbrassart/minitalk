@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 10:48:10 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/12/06 18:11:52 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/12/06 18:57:59 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	handle_sig(int signo, siginfo_t *si, void *uctx)
 		server.counter = 0;
 		server.current_char = 0;
 	}
-	usleep(100);
+	usleep(SERVER_SLEEP_TIME);
 	if (kill(server.client_pid, SIGUSR1) == -1)
 		exit_error(NO_PID, ERROR_KILL);
 }
@@ -74,6 +74,7 @@ int	main(int argc, char *argv[])
 		exit_error(NO_PID, ERROR_ARGC_SERVER);
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = handle_sig;
+	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	print_pid();

@@ -6,7 +6,7 @@
 /*   By: bbrassar <bbrassar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 10:08:30 by bbrassar          #+#    #+#             */
-/*   Updated: 2021/12/06 13:58:34 by bbrassar         ###   ########.fr       */
+/*   Updated: 2021/12/06 18:52:06 by bbrassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static void	send_str(int pid, char const *s)
 			kill_res = kill(pid, signo);
 			if (kill_res == -1)
 				exit_error(NO_PID, ERROR_KILL);
-			pause();
+			if (usleep(10000) == 0)
+				exit_error(NO_PID, "Server timed-out");
 		}
 	}
 }
